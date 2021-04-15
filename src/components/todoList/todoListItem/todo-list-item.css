@@ -1,0 +1,23 @@
+.todoListItem {
+    font-weight: 500;
+    font-size: large;
+}
+.todoListItem:hover {
+    cursor: pointer;
+}
+.important {
+    font-weight: 700 !important;
+    color: steelblue;
+}
+.inlineblock {
+    display: inline-block;
+}
+.rightButtons {
+    text-align: right;
+}
+.button2 {
+    margin-left: 4%;
+}
+.done {
+    text-decoration: line-through;
+}

@@ -1,0 +1,8 @@
+.fluidMain {
+    justify-content: center;
+    text-align: center;
+    display: flex;
+}
+.containerMain {
+    margin: 0 5% 5% 0!important;
+}

@@ -1,0 +1,8 @@
+.inline {
+    display: inline-block !important;
+}
+p {
+    font-size: larger;
+    color: chocolate;
+    text-align: right;
+}
