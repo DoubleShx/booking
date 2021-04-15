@@ -1,5 +1,6 @@
 import React from 'react'
 import TodoListItem from './todoListItem/todo-list-item'
+import { List } from 'antd';
 import './todo-list.css'
 
 
@@ -27,9 +28,9 @@ const TodoList = ({ todos, onDeleted, onToggleDone, onToggleImportant, done, imp
 
     return (
         <div className="todoList">
-        <ul className="list-group">
+        <List className="list-group">
             {elements}
-        </ul>
+        </List>
         </div>
     )
 }

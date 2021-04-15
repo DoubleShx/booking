@@ -4,6 +4,7 @@ import AppHeader from './components/appHeader/app-header';
 import TodoList from './components/todoList/todo-list';
 import SearchPanel from './components/searchPanel/search-panel'
 import "./index.css"
+
 import ItemAddForm from './components/itemAddForm/item-add-form';
 
 
@@ -36,25 +37,21 @@ class App extends Component {
     })    
   }
   onAddFunction = (event, adding2) => {
-    event.preventDefault();
     const ids = this.state.todos.map(el =>  el.id);
-    console.log(this.state.todos)
     const  maximumId = Math.max.apply(null, ids) + 1;
-    this.setState(({todos, adding}) => {
+    this.setState(({todos}) => {
       const newTodo = [...todos, { label: adding2, important: false, done: false, id: maximumId}]
       return {
         todos: newTodo,
         adding: ''
       }
-    })    
+    })   
   }
-  addingChange = (event) => {
-    this.setState(({adding}) => {
-      const editing = event.target.value
-      return {
+  addingChange = (editing) => {
+    if (editing)
+    this.setState({
         adding: editing
-      }
-    })
+    }) 
   };
   toggleProperty(arr, id, param) {    
       let idx = arr.findIndex((el) => el.id === id);
@@ -102,7 +99,7 @@ class App extends Component {
       const addCount = this.state.todos.length
       return ( 
             <div className="fluid">
-              <div className="col-10 offset-1">
+              <div className="containerMain">
               <AppHeader header="Todo List" 
               doneCount = { doneCount } 
               addCount = { addCount } 
@@ -125,6 +122,7 @@ class App extends Component {
               adding = { this.state.adding } 
               addingChange = { this.addingChange } 
               />
+              <button onClick={()=> console.log(this.state)}>dsa</button>
               </div>
             </div>
       )
@@ -133,7 +131,4 @@ class App extends Component {
 
 ReactDom.render(<App/>, document.getElementById('root'))
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
+

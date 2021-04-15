@@ -1,18 +1,49 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Col, Row } from 'antd';
+import { Form, DatePicker, Input, Button } from 'antd';
+
 import './item-add-form.css'
 
-
-export default class ItemAddForm extends Component {
-    
-    render() {
-        const { onAddFunction, adding, addingChange } = this.props;
+const ItemAddForm = ({ onAddFunction, adding, addingChange }) => {
+        const rangeConfig = {
+            rules: [{ type: 'array', required: true, message: 'Please select time!' }],
+          };
+        const onchangeValue = ({BookingForName}) => {
+            if (BookingForName) {
+               return BookingForName            
+            }
+        }
+        
+        const [form] = Form.useForm()
+        const { RangePicker } = DatePicker;
+        
         return(
-                <div className="input-group mb-3 itemAddForm">
-                <form onSubmit = {(event) => onAddFunction(event, adding) } >
-                <input type="text" className="form-control" placeholder="add new work" value = { adding } onChange = { addingChange } />
-                <button className="btn btn-primary" type="submit">Button</button>
-                </form>
+                <div className="itemAddForm">               
+                <Form onFinishFailed = {(event) => console.log(event) } 
+                onFinish={(event) => { onAddFunction(event, event.BookingForName); form.resetFields()}}
+                onValuesChange={(event) => {addingChange(onchangeValue(event))}}
+                form={form}
+                >
+                <Row>
+                <Col span={24} className="inputGroup">
+                <Form.Item name="BookingForName" label="Booking For Name" rules={[{required:true}]} >  
+                <Input className="form-control" placeholder="Name and Surname" size="large"/>
+                </Form.Item>
+                </Col>
+                <Col span={24} className="inputGroup">
+
+                <Form.Item name="range-time-picker" label="Booking interval" {...rangeConfig}>
+                    <RangePicker className="datePicker" showTime format="YYYY-MM-DD HH:mm:ss" size="large"/>
+                </Form.Item>
+                </Col>
+                <Col span={24} className="inputGroup">
+                <Form.Item>
+                <Button type="primary" htmlType="submit" size="large">Button</Button>
+                </Form.Item>
+                </Col>
+                </Row>
+                </Form>                
                 </div>
         )
-    }
 }
+export default ItemAddForm;

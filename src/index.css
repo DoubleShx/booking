@@ -1,8 +1,9 @@
-.fluidMain {
-    justify-content: center;
+@import '~antd/dist/antd.css';
+.fluid {
     text-align: center;
-    display: flex;
+    box-sizing: border-box;
 }
 .containerMain {
-    margin: 0 5% 5% 0!important;
+    margin: 0 auto!important;
+    width: 95% !important;
 }

@@ -1,3 +1,24 @@
 .button1 {
     margin-left: 5px !important;
 }
+.searchInput {
+    width: 60%;
+    min-width: 300px;
+}
+.btn_group {
+    width: 100px;
+    height: 35px;
+    background-color: rgb(253, 254, 255);
+    border: 3px solid beige;
+    color: black;
+}
+.btn_group:hover {
+    background-color: rgb(21, 170, 170);
+    cursor: pointer;
+    color: white;
+    
+}
+.btn_group:focus {
+    background-color: rgb(21, 170, 170);
+    color: white;
+}

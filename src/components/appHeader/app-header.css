@@ -1,8 +1,18 @@
 .inline {
     display: inline-block !important;
 }
+.container_row {
+    width: 100%;
+}
+.inline h1 {
+    font-size: 42px;
+    margin-right: 35px;
+    display: inline;
+    font-weight: 700;
+}
 p {
     font-size: larger;
     color: chocolate;
     text-align: right;
+    display: inline;   
 }
