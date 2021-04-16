@@ -3,10 +3,26 @@
     display: flex;
     justify-content: center;
 }
+.todoListItem:hover {
+    cursor: pointer;
+}
 .done {
     text-decoration: line-through;
 }
 .important {
     color: rgb(112, 186, 186);
     font-weight: 700;
+}
+.timeViewer {
+    background-color: #ffa64d;
+    width: 200px;
+    height: 55px;   
+}
+.timeViewer h4 {
+    margin-top: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+.timeViewer h4.important {
+    color: rgb(14, 80, 80);
 }

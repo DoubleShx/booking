@@ -14,14 +14,12 @@ const TodoList = ({ todos, onDeleted, onToggleDone, onToggleImportant, done, imp
     
     const elements = newTodos.map((item) => {
        const { id, ...itemProps } = item
-    return (
-        <li key={id} className="list-group-item">
-            <TodoListItem 
+    return (        
+            <TodoListItem className="list-group-item" key={id}
             {...itemProps} 
             onDeleted = { () => onDeleted(id) } 
             onToggleDone = { () => onToggleDone(id) } 
             onToggleImportant = { () => onToggleImportant(id) } />
-        </li>
     )
    })
 

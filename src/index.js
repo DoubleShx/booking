@@ -6,22 +6,28 @@ import SearchPanel from './components/searchPanel/search-panel'
 import "./index.css"
 
 import ItemAddForm from './components/itemAddForm/item-add-form';
+import { orderBy } from 'lodash';
+import { format } from 'date-fns';
 
 
 
 class App extends Component {
   state = {
     todos: [
-      { label: "Drink Coffee", important: false, done: false, id: 1 },
-      { label: "Make Awesome App", important: true, done: false, id: 2 },
-      { label: "Have a Lunch", important: false, done: false, id: 3}
+      { label: "Drink Coffee", important: false, done: false, id: 1, timeStart: 'Tue Apr 20 2021 15:27:11', timeFinish: 'Tue Apr 20 2021 16:27:11', person: 'Antony' },
+      { label: "Make Awesome App", important: true, done: false, id: 2, timeStart: 'Tue Apr 23 2021 17:27:11', timeFinish: 'Tue Apr 23 2021 18:27:11', person: "Tomy"},
+      { label: "Have a Lunch", important: false, done: false, id: 3, timeStart: 'Tue Apr 21 2021 15:27:11', timeFinish: 'Tue Apr 21 2021 16:27:11', person: "Dominik"}
     ],
     adding: '',
     test: true,
     search: '',
     activeTodos: '',
+    person: ''
   }
   
+  componentDidMount() {
+    this.setState({person: 'Andrew'})
+  }
   
   onDeleted = (id) => {
     this.setState(({todos}) => {
@@ -36,11 +42,24 @@ class App extends Component {
       }
     })    
   }
-  onAddFunction = (event, adding2) => {
+
+  sortByDate = (todos, bookingTime_interval) => {
+    return orderBy(todos, ['timeStart'], ['asc']).map(el => {return el})
+  };
+  newElementFindIndex = (todos, bookingTime_interval) => {    
+    // todos.findIndex(el => Date(el.timeStart) < Date(bookingTime_interval[0]._d))
+    todos.map(el => {console.log(Date(el.timeStart));
+    console.log(Date(bookingTime_interval[0]._d))})
+  }
+  onAddFunction = (event, adding2, bookingTime_interval, person) => {
     const ids = this.state.todos.map(el =>  el.id);
+    this.newElementFindIndex(this.state.todos, bookingTime_interval)
+    console.log(bookingTime_interval)
     const  maximumId = Math.max.apply(null, ids) + 1;
     this.setState(({todos}) => {
-      const newTodo = [...todos, { label: adding2, important: false, done: false, id: maximumId}]
+      const newTodo = [...todos, 
+        { label: adding2, important: false, done: false, person: person,
+          timeStart: bookingTime_interval[0]._d, timeFinish: bookingTime_interval[1]._d, id: maximumId}]
       return {
         todos: newTodo,
         adding: ''
@@ -90,7 +109,6 @@ class App extends Component {
       activeTodos: param.toString(),
       search: ''
     })
-    console.log(param)
   }
 
   render() {
@@ -121,6 +139,7 @@ class App extends Component {
               onAddFunction = { this.onAddFunction } 
               adding = { this.state.adding } 
               addingChange = { this.addingChange } 
+              person = {this.state.person}
               />
               <button onClick={()=> console.log(this.state)}>dsa</button>
               </div>
